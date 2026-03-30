@@ -230,7 +230,7 @@ export default function ContactPage() {
                       href="tel:+61730079173"
                       className="text-accent hover:underline"
                     >
-                      (+61 7) 30079173
+                      +61 7 3007 9173
                     </a>
                   </div>
                 </div>

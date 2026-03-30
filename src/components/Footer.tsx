@@ -102,7 +102,7 @@ export default function Footer() {
                   href="tel:+61730079173"
                   className="hover:text-white transition-colors"
                 >
-                  (+61 7) 30079173
+                  +61 7 3007 9173
                 </a>
               </li>
               <li>Mon - Fri: 8am - 5pm AEST</li>
