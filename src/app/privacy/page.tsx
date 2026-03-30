@@ -30,7 +30,7 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold text-primary">Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact
-            us at Sales@Promatiq.com or (+61 7) 3007 9173.
+            us at Sales@Promatiq.com or (+61 7) 30079173.
           </p>
         </div>
       </div>

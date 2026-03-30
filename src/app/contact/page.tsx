@@ -230,7 +230,7 @@ export default function ContactPage() {
                       href="tel:+61730079173"
                       className="text-accent hover:underline"
                     >
-                      (+61 7) 3007 9173
+                      (+61 7) 30079173
                     </a>
                   </div>
                 </div>
@@ -287,11 +287,11 @@ export default function ContactPage() {
               {/* Map-like section */}
               <div className="mt-12 bg-surface rounded-2xl p-8">
                 <h3 className="font-semibold text-primary mb-2">
-                  Based in Brisbane, Australia
+                  Serving All of Australia
                 </h3>
                 <p className="text-muted text-sm">
-                  Serving businesses across Australia with remote-first support
-                  and on-site availability in the Brisbane region.
+                  Providing remote-first support and on-site availability to
+                  businesses across Australia.
                 </p>
               </div>
             </div>

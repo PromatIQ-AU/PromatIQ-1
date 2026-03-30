@@ -16,45 +16,47 @@ export async function POST(request: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const notifyEmail = process.env.NOTIFY_EMAIL || "Sales@Promatiq.com";
 
-    if (resendApiKey) {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${resendApiKey}`,
-        },
-        body: JSON.stringify({
-          from: "PromatIQ Website <onboarding@resend.dev>",
-          to: [notifyEmail],
-          subject: `New Enquiry from ${firstName} ${lastName}`,
-          html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, "<br>")}</p>
-          `,
-          reply_to: email,
-        }),
-      });
+    // Always log the submission
+    console.log("Contact form submission:", {
+      firstName,
+      lastName,
+      email,
+      message,
+      timestamp: new Date().toISOString(),
+    });
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        console.error("Resend error:", errorData);
-        return NextResponse.json(
-          { error: "Failed to send email" },
-          { status: 500 }
-        );
+    if (resendApiKey) {
+      try {
+        const res = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: "PromatIQ Website <onboarding@resend.dev>",
+            to: [notifyEmail],
+            subject: `New Enquiry from ${firstName} ${lastName}`,
+            html: `
+              <h2>New Contact Form Submission</h2>
+              <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Message:</strong></p>
+              <p>${message.replace(/\n/g, "<br>")}</p>
+            `,
+            reply_to: email,
+          }),
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          console.error("Resend error:", errorData);
+          // Still return success - the submission was logged
+        }
+      } catch (emailError) {
+        console.error("Email send failed:", emailError);
+        // Still return success - the submission was logged
       }
-    } else {
-      // Log submission when no email service is configured
-      console.log("Contact form submission:", {
-        firstName,
-        lastName,
-        email,
-        message,
-        timestamp: new Date().toISOString(),
-      });
     }
 
     return NextResponse.json({ success: true });
