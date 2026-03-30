@@ -164,7 +164,7 @@ export default function Home() {
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
                   />
                 </div>
                 <div className="p-6">
@@ -217,7 +217,7 @@ export default function Home() {
                     src={product.image}
                     alt={product.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain group-hover:scale-105 transition-transform duration-500 p-2"
                   />
                 </div>
                 <div className="p-6">

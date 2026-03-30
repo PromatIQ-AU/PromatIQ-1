@@ -2,14 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 const partners = [
-  "Lightyear",
-  "CyberCert (SMB1001)",
-  "MYOB",
-  "Microsoft Partner",
-  "AWS",
+  { name: "Lightyear", image: "/images/partner-lightyear.jpg" },
+  { name: "CyberCert (SMB1001)", image: "/images/partner-cybercert.jpg" },
+  { name: "MYOB", image: "/images/partner-myob.jpg" },
+  { name: "Microsoft Partner", image: "/images/partner-microsoft.jpg" },
+  { name: "AWS", image: "/images/partner-aws.jpg" },
 ];
 
-const customers = ["Gold Coast", "Bupa", "Veolia", "SSWA"];
+const customers = [
+  { name: "Gold Coast", image: "/images/customer-goldcoast.jpg" },
+  { name: "Bupa", image: "/images/customer-bupa.jpg" },
+  { name: "Veolia", image: "/images/customer-veolia.jpg" },
+  { name: "SSWA", image: "/images/customer-sswa.png" },
+];
 
 const values = [
   {
@@ -114,13 +119,19 @@ export default function AboutPage() {
               Partnerships & Vendors
             </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-10">
             {partners.map((partner) => (
               <div
-                key={partner}
-                className="bg-white px-8 py-4 rounded-xl shadow-sm flex items-center justify-center min-w-[160px]"
+                key={partner.name}
+                className="bg-white px-6 py-4 rounded-xl shadow-sm flex items-center justify-center h-20 w-44"
               >
-                <span className="font-semibold text-gray-600">{partner}</span>
+                <Image
+                  src={partner.image}
+                  alt={partner.name}
+                  width={140}
+                  height={60}
+                  className="object-contain max-h-14 w-auto mix-blend-multiply"
+                />
               </div>
             ))}
           </div>
@@ -135,13 +146,19 @@ export default function AboutPage() {
               Trusted By
             </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-10">
             {customers.map((customer) => (
               <div
-                key={customer}
-                className="bg-surface px-8 py-4 rounded-xl flex items-center justify-center min-w-[160px]"
+                key={customer.name}
+                className="bg-surface px-6 py-4 rounded-xl flex items-center justify-center h-20 w-44"
               >
-                <span className="font-semibold text-gray-600">{customer}</span>
+                <Image
+                  src={customer.image}
+                  alt={customer.name}
+                  width={140}
+                  height={60}
+                  className="object-contain max-h-14 w-auto mix-blend-multiply"
+                />
               </div>
             ))}
           </div>
